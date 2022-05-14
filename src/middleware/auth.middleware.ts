@@ -5,7 +5,7 @@ import {logger} from "../utils/logger"
 import {config as jwtConfig} from "../config/jwt"
 import jwt from "jsonwebtoken"
 import {redisExists} from "../utils/RedisClient"
-import {throwIfNull} from "../utils/checks";
+import {isNotNull, isNull, throwIfNull} from "../utils/checks"
 import Errors from "../utils/Errors";
 import {userService} from "../services/users.service"
 import {walletService} from "../services/wallets.service"
@@ -28,7 +28,12 @@ const validateUserToken = async <R extends Request>(req: R, res: Response, next:
 
         throwIfNull(Authorization, Errors.REQUIRE_Token())
 
-        const tokenData = jwt.verify(Authorization!, secret!) as unknown as UserTokenData
+        const payload: any = jwt.verify(Authorization!, secret!)
+
+        if (isNull(payload.userId)) {
+            throw Errors.INVALID_Token()
+        }
+        const tokenData = payload as UserTokenData
 
         if (!await redisExists(tokenData.jti)) {
             throw Errors.INVALID_Token()
@@ -53,7 +58,12 @@ const validateWalletToken = async <R extends Request>(req: R, res: Response, nex
 
         throwIfNull(Authorization, Errors.REQUIRE_Token())
 
-        const tokenData = jwt.verify(Authorization!, secret!) as unknown as WalletTokenData
+        const payload: any = jwt.verify(Authorization!, secret!) as unknown as WalletTokenData
+
+        if (isNull(payload.wallet)) {
+            throw Errors.INVALID_Token()
+        }
+        const tokenData = payload as WalletTokenData
 
         if (!await redisExists(tokenData.jti)) {
             throw Errors.INVALID_Token()

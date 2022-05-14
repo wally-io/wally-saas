@@ -10,9 +10,13 @@ import { sequelize, connectionParams } from "./db/database"
 import { logger } from "./utils/logger"
 
 import authRouter from "./routes/auth.route"
-import authEthRouter from "./routes/wallet-register.route"
 import authRegisterRouter from "./routes/auth-register.route"
+import dappRouter from "./routes/dapp.route"
+import dappAuthorizationsRouter from "./routes/dapp-authorizations.route"
 import userRouter from "./routes/user.route"
+import walletRouter from "./routes/wallet.route"
+import walletDAppRouter from "./routes/wallet-dapp.route"
+import walletRegisterRouter from "./routes/wallet-register.route"
 
 import errorMiddleware from "./middleware/error.middleware"
 
@@ -50,9 +54,13 @@ start()
       app.get("/", (_, res) => res.json("Wally SaaS Service OK"))
       app.get("/version", (_, res) => res.json({version: process.env.npm_package_version}))
       app.use(authRouter)
-      app.use(authEthRouter)
       app.use(authRegisterRouter)
+      app.use(dappRouter)
+      app.use(dappAuthorizationsRouter)
       app.use(userRouter)
+      app.use(walletRouter)
+      app.use(walletDAppRouter)
+      app.use(walletRegisterRouter)
 
     app.use(errorMiddleware)
 

@@ -1,7 +1,7 @@
 import { Router } from "express"
 import {validateUserToken} from "../middleware/auth.middleware"
 import AuthController from "../controllers/auth.controller"
-import validateRequest from "../middleware/validate-request.middleware"
+import {validateRequest} from "../middleware/validate-request.middleware"
 import {LoginRequest} from "../dtos/auth"
 import Endpoint from "../enums/endpoint.enum"
 

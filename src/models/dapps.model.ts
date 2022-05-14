@@ -1,7 +1,7 @@
 import {Model, DataTypes, Sequelize, Optional} from "sequelize"
 import {DApp} from "../interfaces/dapps.interface"
 
-export type DAppCreationAttributes = Optional<DApp, "id">
+export type DAppCreationAttributes = Optional<DApp, "id" | "identifier">
 
 export class DAppModel
     extends Model<DApp, DAppCreationAttributes>

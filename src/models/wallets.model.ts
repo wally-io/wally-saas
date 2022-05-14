@@ -1,7 +1,7 @@
 import {Model, DataTypes, Sequelize, Optional} from "sequelize"
 import {Wallet} from "../interfaces/wallets.interface"
 
-export type WalletCreationAttributes = Optional<Wallet, "id" | "createdAt" | "updatedAt">
+export type WalletCreationAttributes = Optional<Wallet, "id" | "identifier" | "createdAt" | "updatedAt">
 
 export class WalletModel
     extends Model<Wallet, WalletCreationAttributes>

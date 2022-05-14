@@ -22,7 +22,7 @@ const corsConfig: CorsConfig = {
         credentials: true,
     },
     production: {
-        origin: [/delysium\.com$/],
+        origin: [/wally\.io/],
         methods: "OPTIONS, POST, GET, PUT, DELETE, PATCH",
         credentials: true,
     },

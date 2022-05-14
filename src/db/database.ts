@@ -4,7 +4,9 @@ import UserModel from "../models/users.model"
 import DAppsModel from "../models/dapps.model"
 import WalletsModel from "../models/wallets.model"
 import WalletDAppsModel from "../models/wallet-dapps.model"
+import WalletValidatorsModel from "../models/wallet-validators.model"
 import WalletDAppAuthorizationsModel from "../models/wallet-dapp-authorizations.model"
+import DAppAuthorizationsModel from "../models/dapp-authorizations.model"
 
 export const connectionParams = {
     username: process.env.MYSQL_USER,
@@ -38,8 +40,10 @@ const db = {
     Users: UserModel(sequelize),
     Wallets: WalletsModel(sequelize),
     WalletDApps: WalletDAppsModel(sequelize),
+    WalletValidators: WalletValidatorsModel(sequelize),
     WalletDAppAuthorizations: WalletDAppAuthorizationsModel(sequelize),
-    DApps: DAppsModel(sequelize)
+    DApps: DAppsModel(sequelize),
+    DAppAuthorizations: DAppAuthorizationsModel(sequelize)
 }
 
 export default db

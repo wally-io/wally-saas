@@ -1,3 +1,3 @@
 export default interface FindWalletsResponse {
-    // TODO
+    wallets: string[]
 }

@@ -2,13 +2,13 @@ import {Model, DataTypes, Sequelize, Optional} from "sequelize"
 import WalletValidator from "../interfaces/wallet-validators.interface"
 import {nanoid} from "nanoid"
 
-export type WalletValidatorCreationAttributes = Optional<WalletValidator, "id" | "createdAt" | "updatedAt">
+export type WalletValidatorCreationAttributes = Optional<WalletValidator, "id" | "nonce" | "createdAt" | "updatedAt">
 
 export class WalletValidatorModel
     extends Model<WalletValidator, WalletValidatorCreationAttributes>
     implements WalletValidator {
     public id: number
-    public walletId: number
+    public address: string
     public nonce: string
     public createdAt: Date
     public updatedAt: Date
@@ -22,10 +22,9 @@ export default (sequelize: Sequelize): typeof WalletValidatorModel => {
                 primaryKey: true,
                 type: DataTypes.INTEGER,
             },
-            walletId: {
+            address: {
                 allowNull: false,
-                type: DataTypes.INTEGER,
-                field: "wallet_id"
+                type: DataTypes.STRING
             },
             nonce: {
                 allowNull: false,

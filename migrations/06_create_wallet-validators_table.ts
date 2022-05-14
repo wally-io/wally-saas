@@ -8,10 +8,10 @@ export const up: Migration = async ({context: queryInterface}: { context: QueryI
             primaryKey: true,
             type: DataTypes.INTEGER,
         },
-        wallet_id: {
+        address: {
             allowNull: false,
-            type: DataTypes.INTEGER,
-            unique: "wallet_id"
+            type: DataTypes.STRING,
+            unique: "address"
         },
         nonce: {
             allowNull: false,

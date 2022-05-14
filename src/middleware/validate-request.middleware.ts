@@ -29,7 +29,7 @@ const validateRequest = (
     }
 }
 
-export const validateQueryRequest = (
+const validateQueryRequest = (
     type: any,
     skipMissingProperties = false,
     whitelist = true,
@@ -38,4 +38,7 @@ export const validateQueryRequest = (
     return validateRequest(type, "query", skipMissingProperties, whitelist, forbidNonWhitelisted)
 }
 
-export default validateRequest
+export {
+    validateRequest,
+    validateQueryRequest
+}

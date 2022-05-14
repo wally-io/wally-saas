@@ -7,7 +7,7 @@ import {throwIfNull} from "../utils/checks"
 import Errors from "../utils/Errors"
 
 class UserService {
-    public users = db.Users;
+    private users = db.Users;
 
     public async getAll(): Promise<User[]> {
         return await this.users.findAll();
@@ -26,31 +26,31 @@ class UserService {
     }
 
     public async findById(id: number): Promise<UserModel | null> {
-        return await db.Users.findOne({
+        return await this.users.findOne({
             where: {id: id}
         });
     }
 
     public async findByEmail(email: string): Promise<UserModel | null> {
-        return await db.Users.findOne({
+        return await this.users.findOne({
             where: {email: email}
         });
     }
 
     public async findByIds(ids: number[]): Promise<UserModel[]> {
-        return await db.Users.findAll({
+        return await this.users.findAll({
             where: {id: ids}
         });
     }
 
     public async findByEmails(emails: string[]): Promise<UserModel[]> {
-        return await db.Users.findAll({
+        return await this.users.findAll({
             where: {email: emails}
         });
     }
 
     public async emailExists(email: string): Promise<boolean> {
-        return await db.Users.findOne({
+        return await this.users.findOne({
             where: {email: email}
         }) != undefined
     }
@@ -61,7 +61,7 @@ class UserService {
             throw Errors.CONFLICT_Email(email)
         }
         const hashedPassword = await bcrypt.hash(password, 10)
-        return await db.Users.create({
+        return await this.users.create({
             email: email,
             password: hashedPassword
         });

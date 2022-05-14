@@ -1,6 +1,6 @@
 export default interface WalletValidator {
     id: number
-    walletId: number
+    address: string
     nonce: string
     createdAt: Date
     updatedAt: Date

@@ -1,5 +1,5 @@
 import {NextFunction, Response} from "express";
-import {BodyRequest, Empty, QueryRequest} from "../interfaces/api.interface";
+import {BodyRequest, Empty} from "../interfaces/api.interface";
 import {userService} from "../services/users.service";
 import {RegisterRequest} from "../dtos/auth"
 
