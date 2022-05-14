@@ -1,0 +1,13 @@
+{
+  "parser": "vue-eslint-parser",
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    // "prettier",
+    "plugin:vue/vue3-essential",
+    "@vue/eslint-config-typescript/recommended",
+    "@vue/eslint-config-typescript"
+  ],
+  "parserOptions": { "ecmaVersion": 2018, "sourceType": "module" },
+  "rules": {}
+}
