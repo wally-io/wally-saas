@@ -12,3 +12,5 @@ interact.js
 .env*
 
 *.npmrc
+
+.secrets

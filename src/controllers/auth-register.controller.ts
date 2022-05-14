@@ -1,6 +1,6 @@
 import {NextFunction, Response} from "express";
 import {BodyRequest, Empty} from "../interfaces/api.interface";
-import {userService} from "../services/users.service";
+import {userService} from "../services/user.service";
 import {RegisterRequest} from "../dtos/auth"
 
 export default class AuthRegisterController {

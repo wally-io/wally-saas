@@ -5,12 +5,12 @@ import {
     FindWalletsRequest,
     FindWalletsResponse,
 } from "../dtos/dapp"
-import {dappService} from "../services/dapps.service"
+import {dappService} from "../services/dapp.service"
 import {dappAuthorizationsService} from "../services/dapp-authorizations.service"
 import {groupBy} from "../utils/map"
 import {isNull} from "../utils/checks"
 import {walletDAppService} from "../services/wallet-dapp.service"
-import {walletService} from "../services/wallets.service"
+import {walletService} from "../services/wallet.service"
 
 export default class DappController {
     public all = async (req: EmptyRequest, res: Response<AllDAppResponse>, next: NextFunction) => {

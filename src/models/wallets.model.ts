@@ -8,6 +8,7 @@ export class WalletModel
     implements Wallet {
     public id: string
     public address: string
+    public fcmToken: string | null
     public createdAt: Date
     public updatedAt: Date
 }
@@ -23,6 +24,10 @@ export default (sequelize: Sequelize): typeof WalletModel => {
             },
             address: {
                 allowNull: false,
+                type: DataTypes.STRING
+            },
+            fcmToken: {
+                allowNull: true,
                 type: DataTypes.STRING
             },
             createdAt: {

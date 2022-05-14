@@ -4,11 +4,11 @@ import {UserTokenData, UserDto, WalletTokenData, WalletDto} from "../interfaces/
 import {logger} from "../utils/logger"
 import {config as jwtConfig} from "../config/jwt"
 import jwt from "jsonwebtoken"
-import {redisExists} from "../utils/RedisClient"
+import {redisExists} from "../utils/redis.client"
 import {isNotNull, isNull, throwIfNull} from "../utils/checks"
 import Errors from "../utils/Errors";
-import {userService} from "../services/users.service"
-import {walletService} from "../services/wallets.service"
+import {userService} from "../services/user.service"
+import {walletService} from "../services/wallet.service"
 
 const {secret} = jwtConfig
 

@@ -1,6 +1,6 @@
 import Token from "../utils/Token"
 import {TokenData} from "../interfaces/auth.interface"
-import {redisAdd, redisDelSuffix} from "../utils/RedisClient"
+import {redisAdd, redisDelSuffix} from "../utils/redis.client"
 
 class TokenService {
 

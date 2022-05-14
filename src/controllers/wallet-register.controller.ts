@@ -2,7 +2,7 @@ import {BodyRequest} from "../interfaces/api.interface"
 import {NextFunction, Response} from "express"
 import {RegisterRequest} from "../dtos/wallet/register"
 import {walletValidatorsService} from "../services/wallet-validators.service"
-import {walletService} from "../services/wallets.service"
+import {walletService} from "../services/wallet.service"
 import {tokenService} from "../services/token.service"
 import {TokenResponse} from "../dtos/token"
 

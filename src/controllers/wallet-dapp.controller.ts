@@ -12,7 +12,7 @@ import {
 } from "../dtos/wallet/dapp"
 import {walletDAppService} from "../services/wallet-dapp.service"
 import {Endpoint} from "../enums"
-import {dappService} from "../services/dapps.service"
+import {dappService} from "../services/dapp.service"
 import {dappAuthorizationsService} from "../services/dapp-authorizations.service"
 import {walletDAppAuthorizationsService} from "../services/wallet-dapp-authorizations.service"
 import {associateBy} from "../utils/map"

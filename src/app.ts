@@ -6,6 +6,9 @@ import cors from "cors"
 import helmet from "helmet"
 import pc from "picocolors"
 
+import admin from 'firebase-admin'
+import firebaseAuthKey from "../.secrets/wally-saas-firebase-admin.json"
+
 import { sequelize, connectionParams } from "./db/database"
 import { logger } from "./utils/logger"
 
@@ -23,6 +26,11 @@ import errorMiddleware from "./middleware/error.middleware"
 
 // Port
 const PORT = process.env.PORT || 4000
+
+admin.initializeApp({
+    // @ts-ignore
+    credential: admin.credential.cert(firebaseAuthKey)
+});
 
 const app = express()
 app.use(morgan("combined"))

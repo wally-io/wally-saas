@@ -6,6 +6,7 @@ enum Endpoint {
     USER_Find = "/user/find",
     USER_All = "/user/all",
     WALLET_Login = "/wallet/login",
+    WALLET_ConnectFcm = "/wallet/connect-fcm",
     WALLET_ETH_Challenge = "/wallet/eth/challenge",
     WALLET_ETH_Register = "/wallet/eth/register",
     DAPP_All = "/dapp/all",

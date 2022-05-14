@@ -1,6 +1,6 @@
 import {UserEmptyRequest, UserQueryRequest} from "../interfaces/api.interface"
 import {NextFunction, Response} from "express"
-import {userService} from "../services/users.service"
+import {userService} from "../services/user.service"
 import {UserModel} from "../models/users.model"
 import {isNotEmpty, throwIfNull} from "../utils/checks"
 import Errors from "../utils/Errors"

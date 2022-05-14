@@ -15,7 +15,7 @@ enum ErrorCode {
     REJECTED_Password = 400300,
     REJECTED_Signature = 400301,
     REQUIRE_Token = 400401,
-    REQUIRE_Access = 403404,
+    WALLET_Disconnected = 404405,
     INVALID_Token = 400502,
     INVALID_Parameter = 400503,
     MISSING_Filter = 404702,

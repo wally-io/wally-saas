@@ -54,6 +54,13 @@ class WalletService {
             address: address
         })
     }
+
+    public async connectFcm(walletId: string, token:string) {
+        const wallet = await this.getById(walletId)
+        await wallet.update({
+            fcmToken: token
+        })
+    }
 }
 
 export const walletService = new WalletService()

@@ -1,7 +1,8 @@
 import ChallengeRequest from "./challenge.request"
 import ChallengeResponse from "./challenge.response"
-import LoginRequest from "./login.request"
+import WalletLoginRequest from "./login.request"
+import WalletConnectFcmRequest from "./connect-fcm.request"
 
 export {
-    ChallengeResponse, ChallengeRequest, LoginRequest
+    ChallengeResponse, ChallengeRequest, WalletLoginRequest, WalletConnectFcmRequest
 }

@@ -22,6 +22,7 @@ const Errors = {
     MISSING_Filter: () => new HttpException(ErrorCode.MISSING_Filter, `Request filter not specified.`),
     NOT_IMPLEMENTED: () => new HttpException(ErrorCode.NOT_IMPLEMENTED, `API not implemented.`),
     NOT_OWNER: () => new HttpException(ErrorCode.NOT_OWNER, `Not Owner of the resource you try to access.`),
+    WALLET_Disconnected: (address: string) => new HttpException(ErrorCode.WALLET_Disconnected, `The wallet ${address} is not connected to Wally.`),
 }
 
 export default Errors

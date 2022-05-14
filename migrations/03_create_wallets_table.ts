@@ -12,6 +12,10 @@ export const up: Migration = async ({context: queryInterface}: { context: QueryI
             allowNull: false,
             type: DataTypes.STRING,
         },
+        fcm_token: {
+            allowNull: true,
+            type: DataTypes.STRING,
+        },
         created_at: {
             allowNull: false,
             type: DataTypes.DATE

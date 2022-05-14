@@ -2,7 +2,7 @@ import db from "../db/database"
 import User from "../interfaces/user.interface"
 import * as bcrypt from "bcryptjs"
 import {UserModel} from "../models/users.model"
-import {redisDelSuffix} from "../utils/RedisClient"
+import {redisDelSuffix} from "../utils/redis.client"
 import {throwIfNull} from "../utils/checks"
 import Errors from "../utils/Errors"
 

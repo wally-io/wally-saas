@@ -6,8 +6,16 @@ import {
     CreateTransactionResponse, SetTransactionFailRequest,
     SetTransactionStartRequest, SetTransactionSuccessRequest
 } from "../dtos/transaction"
-import {transactionsService} from "../services/transactions.service"
-import {dappService} from "../services/dapps.service"
+import {transactionsService} from "../services/transaction.service"
+import {dappService} from "../services/dapp.service"
+import {publish} from "../utils/transaction.publisher"
+import {walletService} from "../services/wallet.service"
+import {throwIfNull} from "../utils/checks"
+import Errors from "../utils/Errors"
+import {Contract} from "ethers"
+// for test only
+import ERC20 from "erc-20-abi"
+// end
 
 export default class TransactionsController {
     public all = async (req: EmptyRequest, res: Response<AllTransactionsResponse>, next: NextFunction) => {
@@ -28,10 +36,20 @@ export default class TransactionsController {
             await dappService.validateOwnership(payload.dappId, user.id)
 
             const transaction = await transactionsService.create(payload.walletAddress, payload.dappId)
+            const dapp = await dappService.getById(transaction.dappId)
+            // TODO call dapp callback dapp.callback to notify new transaction
 
-            // TODO create transaction
+            const wallet = await walletService.getByAddress(transaction.walletAddress)
 
-            // TODO push transaction to Firebase
+            // TODO check dapp allowance for that wallet (or authorizations)
+
+            // TODO add apis to manage abis, client can only create transactions from subscribed abis
+            const contract = new Contract(payload.contractAddress, ERC20);
+            const rawTransaction = await contract.populateTransaction[payload.method](...payload.parameters);
+
+            throwIfNull(wallet.fcmToken, Errors.WALLET_Disconnected(wallet.address))
+
+            publish(wallet.fcmToken!, transaction.id, JSON.stringify(rawTransaction))
 
             res.status(200).json({
                 transactionId: transaction.id
@@ -47,7 +65,7 @@ export default class TransactionsController {
             const transaction = await transactionsService.setAsStart(wallet.address, payload.transactionId)
 
             const dapp = await dappService.getById(transaction.dappId)
-            // TODO call dapp callback dapp.callback
+            // TODO call dapp callback dapp.callback to notify transaction is signed
 
             res.status(200).json({})
         } catch (error) {
@@ -61,7 +79,7 @@ export default class TransactionsController {
             const transaction = await transactionsService.setAsSuccess(wallet.address, payload.transactionId, payload.response)
 
             const dapp = await dappService.getById(transaction.dappId)
-            // TODO call dapp callback dapp.callback
+            // TODO call dapp callback dapp.callback to notify transaction is persisted on blockchain
 
             res.status(200).json({})
         } catch (error) {
@@ -75,7 +93,7 @@ export default class TransactionsController {
             const transaction = await transactionsService.setAsFail(wallet.address, payload.transactionId, payload.error)
 
             const dapp = await dappService.getById(transaction.dappId)
-            // TODO call dapp callback dapp.callback
+            // TODO call dapp callback dapp.callback to notify transaction failed
 
             res.status(200).json({})
         } catch (error) {

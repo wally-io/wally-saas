@@ -1,4 +1,4 @@
-import {IsArray, IsEthereumAddress, IsUUID} from "class-validator"
+import {IsArray, IsEthereumAddress, IsString, IsUUID} from "class-validator"
 
 export default class CreateTransactionRequest {
     @IsUUID()
@@ -7,6 +7,8 @@ export default class CreateTransactionRequest {
     public walletAddress: string
     @IsEthereumAddress()
     public contractAddress: string
+    @IsString()
+    public method: string
     @IsArray()
     public parameters: any[]
 }
