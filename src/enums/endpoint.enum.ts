@@ -15,8 +15,15 @@ enum Endpoint {
     DAPP_AUTHORIZATIONS_Add = "/dapp/authorizations/add",
     DAPP_AUTHORIZATIONS_Delete = "/dapp/authorizations/delete",
     WALLET_DAPP_Find = "/wallet/dapp/find",
+    WALLET_DAPP_Connect = "/wallet/dapp/connect",
+    WALLET_DAPP_GetConnectLink = "/wallet/dapp/connect/link",
     WALLET_DAPP_GetAuthorizations = "/wallet/dapp/get-authorizations",
     WALLET_DAPP_UpdateAuthorizations = "/wallet/dapp/update-authorizations",
+    TRANSACTION_All = "/transactions/all",
+    TRANSACTION_Create = "/transactions/create",
+    TRANSACTION_PublishStart = "/transactions/publish/set-start",
+    TRANSACTION_PublishSuccess = "/transactions/publish/set-success",
+    TRANSACTION_PublishFail = "/transactions/publish/set-fail",
 }
 
 export default Endpoint

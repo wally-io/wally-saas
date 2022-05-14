@@ -8,6 +8,8 @@ enum ErrorCode {
     NOT_FOUND_WalletAddress = 404106,
     NOT_FOUND_WalletValidator = 404107,
     NOT_FOUND_DAppId = 404108,
+    NOT_FOUND_TransactionId = 404109,
+    NOT_FOUND_DAppAuthorizationId = 404110,
     CONFLICT = 409200,
     CONFLICT_Email = 409201,
     REJECTED_Password = 400300,
@@ -17,6 +19,7 @@ enum ErrorCode {
     INVALID_Token = 400502,
     INVALID_Parameter = 400503,
     MISSING_Filter = 404702,
+    NOT_OWNER = 400800,
 }
 
 export default ErrorCode

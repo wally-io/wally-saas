@@ -1,5 +1,5 @@
 import {Model, DataTypes, Sequelize, Optional} from "sequelize"
-import {DApp} from "../interfaces/dapps.interface"
+import {DApp} from "../interfaces/dapp.interface"
 
 export type DAppCreationAttributes = Optional<DApp, "id">
 
@@ -9,6 +9,7 @@ export class DAppModel
     public id!: string
     public name!: string
     public ownerId!: string
+    public callback: string | null
 }
 
 export default (sequelize: Sequelize): typeof DAppModel => {
@@ -17,7 +18,7 @@ export default (sequelize: Sequelize): typeof DAppModel => {
             id: {
                 autoIncrement: true,
                 primaryKey: true,
-                type: DataTypes.UUID,
+                type: DataTypes.UUIDV4,
                 defaultValue: DataTypes.UUIDV4,
             },
             name: {
@@ -29,7 +30,11 @@ export default (sequelize: Sequelize): typeof DAppModel => {
                 allowNull: false,
                 type: DataTypes.UUIDV4,
                 field: "owner_id"
-            }
+            },
+            callback: {
+                allowNull: true,
+                type: DataTypes.STRING
+            },
         },
         {
             underscored: true,

@@ -1,5 +1,5 @@
 import {Model, DataTypes, Sequelize, Optional} from "sequelize"
-import {WalletDApp} from "../interfaces/wallet-dapps.interface"
+import {WalletDApp} from "../interfaces/wallet-dapp.interface"
 
 export type WalletDAppCreationAttributes = Optional<WalletDApp, "id">
 

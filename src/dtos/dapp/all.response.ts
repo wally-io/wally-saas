@@ -1,5 +1,4 @@
-import {TransactionType} from "../../enums/transaction-type.enum"
-import {TargetType} from "../../enums/token-type.enum"
+import {TargetType, TransactionType} from "../../enums"
 
 export interface DAppAuthorizationDto {
     transactionType: TransactionType
@@ -12,6 +11,7 @@ export interface DAppAuthorizationDto {
 export interface DAppDto {
     id: string
     name: string
+    callback: string | null
     authorizations: DAppAuthorizationDto[]
 }
 

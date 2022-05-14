@@ -1,5 +1,5 @@
 import {Model, DataTypes, Sequelize, Optional} from "sequelize"
-import {Wallet} from "../interfaces/wallets.interface"
+import Wallet from "../interfaces/wallet.interface"
 
 export type WalletCreationAttributes = Optional<Wallet, "id" | "createdAt" | "updatedAt">
 
@@ -18,7 +18,7 @@ export default (sequelize: Sequelize): typeof WalletModel => {
             id: {
                 autoIncrement: true,
                 primaryKey: true,
-                type: DataTypes.UUID,
+                type: DataTypes.UUIDV4,
                 defaultValue: DataTypes.UUIDV4,
             },
             address: {

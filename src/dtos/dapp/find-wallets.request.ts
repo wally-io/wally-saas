@@ -1,6 +1,6 @@
-import {IsString} from "class-validator"
+import {IsUUID} from "class-validator"
 
 export default class FindWalletsRequest {
-    @IsString()
+    @IsUUID()
     dappId: string
 }

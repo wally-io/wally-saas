@@ -16,6 +16,10 @@ export const up: Migration = async ({context: queryInterface}: { context: QueryI
         owner_id: {
             allowNull: false,
             type: DataTypes.UUIDV4
+        },
+        callback: {
+            allowNull: true,
+            type: DataTypes.STRING
         }
     })
 }

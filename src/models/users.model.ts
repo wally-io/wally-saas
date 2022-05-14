@@ -1,6 +1,6 @@
 import {Model, DataTypes, Sequelize, Optional} from "sequelize"
 import * as bcrypt from "bcryptjs"
-import User from "../interfaces/users.interface"
+import User from "../interfaces/user.interface"
 
 export type UserCreationAttributes = Optional<User, "id" | "createdAt" | "updatedAt">
 

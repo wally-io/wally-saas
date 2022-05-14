@@ -1,12 +1,15 @@
-import FindDappsResponse from "./find-dapps.response"
+import FindWalletDAppsResponse from "./find-dapps.response"
 import FindAuthorizationsRequest from "./find-authorizations.request"
 import FindAuthorizationsResponse from "./find-authorizations.response"
 import UpdateAuthorizationsRequest from "./update-authorizations.request"
 import ConnectDAppRequest from "./connect.request"
-import {DAppAuthorization} from "./connect.request"
+import GetDAppConnectLinkRequest from "./get-connect-link.request"
+import GetDAppConnectLinkResponse from "./get-connect-link.response"
+import {WalletDAppAuthorizationRequest} from "./dapp-authorization.request"
 
 export {
-    FindDappsResponse,
+    FindWalletDAppsResponse,
     FindAuthorizationsRequest, FindAuthorizationsResponse,
-    UpdateAuthorizationsRequest, ConnectDAppRequest, DAppAuthorization
+    UpdateAuthorizationsRequest, ConnectDAppRequest, WalletDAppAuthorizationRequest,
+    GetDAppConnectLinkRequest, GetDAppConnectLinkResponse
 }

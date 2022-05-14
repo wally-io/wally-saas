@@ -1,4 +1,4 @@
-import {IsEmail, IsNumberString, ValidateIf} from "class-validator"
+import {IsEmail, IsUUID, ValidateIf} from "class-validator"
 import {isNotEmpty} from "../../utils/checks"
 
 export default class UserFindRequest {
@@ -6,7 +6,7 @@ export default class UserFindRequest {
     @ValidateIf((object, value) => isNotEmpty(value))
     public email: string | undefined
 
-    @IsNumberString()
+    @IsUUID()
     @ValidateIf((object, value) => isNotEmpty(value))
     public userId: string | undefined
 }

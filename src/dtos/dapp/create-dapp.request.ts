@@ -1,7 +1,7 @@
-import {TransactionType} from "../../enums/transaction-type.enum"
-import {TargetType} from "../../enums/token-type.enum"
-import {IsArray, IsEnum, IsString, ValidateNested} from "class-validator"
+import {IsArray, IsEnum, IsString, IsUrl, ValidateIf, ValidateNested} from "class-validator"
 import {Type} from "class-transformer"
+import {TargetType, TransactionType } from "../../enums"
+import {isNotEmpty} from "../../utils/checks"
 
 export class DAppAuthorization {
     @IsEnum(TransactionType)
@@ -19,6 +19,10 @@ export class DAppAuthorization {
 export default class CreateDappRequest {
     @IsString()
     public name: string
+
+    @IsUrl()
+    @ValidateIf((object, value) => isNotEmpty(value))
+    public callback: string | null
 
     @IsArray()
     @ValidateNested({message: "Invalid authorization format"})

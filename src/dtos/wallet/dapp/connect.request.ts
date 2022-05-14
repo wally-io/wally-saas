@@ -1,19 +1,16 @@
-import {IsArray, IsBoolean, IsNumber, IsString, ValidateNested} from "class-validator"
+import {IsArray, IsString, IsUUID, ValidateNested} from "class-validator"
 import {Type} from "class-transformer"
-
-export class DAppAuthorization {
-    @IsNumber()
-    dappAuthorizationId: number
-    @IsBoolean()
-    authorized: boolean
-}
+import {WalletDAppAuthorizationRequest} from "./dapp-authorization.request"
 
 export default class ConnectDAppRequest {
+    @IsUUID()
+    dappId: string
+
     @IsString()
-    dappIdentifier: string
+    dappUserIdentifier: string
 
     @IsArray()
     @ValidateNested({message: "Invalid authorization format"})
-    @Type(() => DAppAuthorization)
-    public authorizations: DAppAuthorization[]
+    @Type(() => WalletDAppAuthorizationRequest)
+    public authorizations: WalletDAppAuthorizationRequest[]
 }

@@ -1,5 +1,4 @@
-import {TransactionType} from "../../../enums/transaction-type.enum"
-import {TargetType} from "../../../enums/token-type.enum"
+import {TargetType, TransactionType} from "../../../enums"
 
 interface DAppAuthorization {
     authorized: boolean

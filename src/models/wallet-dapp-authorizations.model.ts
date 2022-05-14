@@ -1,5 +1,5 @@
 import {Model, DataTypes, Sequelize, Optional} from "sequelize"
-import {WalletDAppAuthorization} from "../interfaces/wallet-dapp-authorizations.interface"
+import {WalletDAppAuthorization} from "../interfaces/wallet-dapp-authorization.interface"
 
 export type WalletDAppAuthorizationCreationAttributes = Optional<WalletDAppAuthorization, "id">
 

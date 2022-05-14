@@ -1,13 +1,25 @@
 import db from "../db/database"
 import {DAppAuthorizationModel} from "../models/dapp-authorizations.model"
-import {TransactionType} from "../enums/transaction-type.enum"
-import {TargetType} from "../enums/token-type.enum"
+import {TargetType, TransactionType} from "../enums"
+import {UserModel} from "../models/users.model"
+import {throwIfNull} from "../utils/checks"
+import Errors from "../utils/Errors"
 
 class DAppAuthorizationsService {
     private dappAuthorizations = db.DAppAuthorizations
 
     public async getAll(): Promise<DAppAuthorizationModel[]> {
         return this.dappAuthorizations.findAll()
+    }
+
+    public async getById(id: number): Promise<DAppAuthorizationModel> {
+        const authorization = await this.findById(id)
+        throwIfNull(authorization, Errors.NOT_FOUND_DAppAuthorizationId(id))
+        return authorization!;
+    }
+
+    public async findById(id: number): Promise<DAppAuthorizationModel | null> {
+        return await this.dappAuthorizations.findByPk(id);
     }
 
     public async findAllByDAppId(dappId: string): Promise<DAppAuthorizationModel[]> {

@@ -2,7 +2,8 @@ import db from "../db/database"
 import {WalletModel} from "../models/wallets.model"
 import {throwIfNull} from "../utils/checks"
 import Errors from "../utils/Errors"
-import {Wallet} from "../interfaces/wallets.interface"
+import Wallet from "../interfaces/wallet.interface"
+import {WalletDAppModel} from "../models/wallet-dapps.model"
 
 class WalletService {
     private wallets = db.Wallets
@@ -30,6 +31,12 @@ class WalletService {
     public async findByAddress(address: string): Promise<WalletModel | null> {
         return await this.wallets.findOne({
             where: {address: address}
+        })
+    }
+
+    public async findByIds(walletIds: string[]): Promise<WalletModel[]> {
+        return await this.wallets.findAll({
+            where: {id: walletIds}
         })
     }
 

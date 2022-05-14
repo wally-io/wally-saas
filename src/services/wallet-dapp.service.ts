@@ -3,13 +3,42 @@ import db from "../db/database"
 import {WalletDAppModel} from "../models/wallet-dapps.model"
 import {dappAuthorizationsService} from "./dapp-authorizations.service"
 import {walletDAppAuthorizationsService} from "./wallet-dapp-authorizations.service"
-import {DAppAuthorization} from "../dtos/wallet/dapp"
+import {WalletDAppAuthorizationRequest} from "../dtos/wallet/dapp"
 import {associateBy} from "../utils/map"
 
 class WalletDAppService {
     private walletDApps = db.WalletDApps
 
-    public async createLink(walletId: string, dappId: string, authorizations: DAppAuthorization[]): Promise<WalletDAppModel> {
+    public async findByWalletId(walletId: string): Promise<WalletDAppModel[]> {
+        return await this.walletDApps.findAll({
+            where: {walletId: walletId}
+        });
+    }
+
+
+    public async findByDAppId(dappId: string): Promise<WalletDAppModel[]> {
+        return await this.walletDApps.findAll({
+            where: {dappId: dappId}
+        });
+    }
+
+    public async updateDAppAuthorizations(walletId: string, dappId: string, authorizations: WalletDAppAuthorizationRequest[]) {
+        if (!await this.linkExists(walletId, dappId)) {
+            throw Errors.NOT_OWNER()
+        }
+
+        for (const authorization of authorizations) {
+            const rule = await walletDAppAuthorizationsService.getById(authorization.walletDAppAuthorizationId)
+            if (rule.dappId !== dappId || rule.walletId !== walletId) {
+                throw Errors.NOT_OWNER()
+            }
+            await rule.update({
+                authorized: authorization.authorized
+            })
+        }
+    }
+
+    public async connectDApp(walletId: string, dappId: string, authorizations: WalletDAppAuthorizationRequest[]): Promise<WalletDAppModel> {
 
         if (await this.linkExists(walletId, dappId)) {
             throw Errors.CONFLICT("wallet", walletId)

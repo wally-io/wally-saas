@@ -1,9 +1,8 @@
-import {TransactionType} from "../../../enums/transaction-type.enum"
-import {TargetType} from "../../../enums/token-type.enum"
-import {IsEnum, IsString} from "class-validator"
+import {IsEnum, IsString, IsUUID} from "class-validator"
+import {TargetType, TransactionType} from "../../../enums"
 
 export default class AddAuthorizationRequest {
-    @IsString()
+    @IsUUID()
     public dappId: string
     @IsEnum(TransactionType)
     public transactionType: TransactionType

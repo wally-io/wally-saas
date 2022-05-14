@@ -13,6 +13,7 @@ import authRouter from "./routes/auth.route"
 import authRegisterRouter from "./routes/auth-register.route"
 import dappRouter from "./routes/dapp.route"
 import dappAuthorizationsRouter from "./routes/dapp-authorizations.route"
+import transactionRouter from "./routes/transaction.route"
 import userRouter from "./routes/user.route"
 import walletRouter from "./routes/wallet.route"
 import walletDAppRouter from "./routes/wallet-dapp.route"
@@ -57,6 +58,7 @@ start()
       app.use(authRegisterRouter)
       app.use(dappRouter)
       app.use(dappAuthorizationsRouter)
+      app.use(transactionRouter)
       app.use(userRouter)
       app.use(walletRouter)
       app.use(walletDAppRouter)

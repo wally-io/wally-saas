@@ -1,6 +1,6 @@
-import {IsString} from "class-validator"
+import {IsUUID} from "class-validator"
 
 export default class GetDAppAuthorizationsRequest {
-    @IsString()
+    @IsUUID()
     dappId: string
 }

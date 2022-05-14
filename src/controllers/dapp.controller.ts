@@ -6,10 +6,11 @@ import {
     FindWalletsResponse,
 } from "../dtos/dapp"
 import {dappService} from "../services/dapps.service"
-import Errors from "../utils/Errors"
 import {dappAuthorizationsService} from "../services/dapp-authorizations.service"
 import {groupBy} from "../utils/map"
 import {isNull} from "../utils/checks"
+import {walletDAppService} from "../services/wallet-dapp.service"
+import {walletService} from "../services/wallets.service"
 
 export default class DappController {
     public all = async (req: EmptyRequest, res: Response<AllDAppResponse>, next: NextFunction) => {
@@ -22,6 +23,7 @@ export default class DappController {
                 return {
                     id: dapp.id,
                     name: dapp.name,
+                    callback: dapp.callback,
                     authorizations: (isNull(authorizations) ? [] : authorizations).map(authorization => {
                         return {
                             transactionType: authorization.transactionType,
@@ -44,7 +46,11 @@ export default class DappController {
     public findWallets = async (req: QueryRequest<FindWalletsRequest>, res: Response<FindWalletsResponse>, next: NextFunction) => {
         try {
             const payload = req.query
-            throw Errors.NOT_IMPLEMENTED()
+            const data = await walletDAppService.findByDAppId(payload.dappId)
+            const wallets = await walletService.findByIds(data.map(it => it.walletId))
+            res.status(200).json({
+                wallets: wallets.map(wallet => wallet.address)
+            })
         } catch (error) {
             next(error)
         }
@@ -54,7 +60,7 @@ export default class DappController {
         try {
             const caller = req.user
             const payload = req.body
-            await dappService.create(caller.id, payload.name, payload.authorizationRequest)
+            await dappService.create(caller.id, payload.name, payload.callback, payload.authorizationRequest)
             res.status(200).json({})
         } catch (error) {
             next(error)

@@ -1,7 +1,6 @@
 import {Model, DataTypes, Sequelize, Optional} from "sequelize"
-import {DAppAuthorization} from "../interfaces/dapp-authorizations.interface"
-import {TransactionType} from "../enums/transaction-type.enum"
-import {TargetType} from "../enums/token-type.enum"
+import {DAppAuthorization} from "../interfaces/dapp-authorization.interface"
+import {TargetType, TransactionType} from "../enums"
 
 export type DAppAuthorizationCreationAttributes = Optional<DAppAuthorization, "id">
 

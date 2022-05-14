@@ -1,5 +1,5 @@
 import db from "../db/database"
-import User from "../interfaces/users.interface"
+import User from "../interfaces/user.interface"
 import * as bcrypt from "bcryptjs"
 import {UserModel} from "../models/users.model"
 import {redisDelSuffix} from "../utils/RedisClient"

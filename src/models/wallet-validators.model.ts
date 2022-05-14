@@ -1,5 +1,5 @@
 import {Model, DataTypes, Sequelize, Optional} from "sequelize"
-import WalletValidator from "../interfaces/wallet-validators.interface"
+import WalletValidator from "../interfaces/wallet-validator.interface"
 import {nanoid} from "nanoid"
 
 export type WalletValidatorCreationAttributes = Optional<WalletValidator, "id" | "nonce" | "createdAt" | "updatedAt">
