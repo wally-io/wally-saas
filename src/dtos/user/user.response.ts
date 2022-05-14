@@ -1,7 +1,6 @@
 export default interface UserResponse {
-    id: number
+    id: string
     email: string
-    identifier: string
     createdAt: Date
     updatedAt: Date
 }

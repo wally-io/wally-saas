@@ -9,7 +9,7 @@ export class DAppAuthorizationModel
     extends Model<DAppAuthorization, DAppAuthorizationCreationAttributes>
     implements DAppAuthorization {
     public id: number
-    public dappId: number
+    public dappId: string
     public transactionType: TransactionType
     public targetType: TargetType
     public targetName: string
@@ -27,7 +27,7 @@ export default (sequelize: Sequelize): typeof DAppAuthorizationModel => {
             },
             dappId: {
                 allowNull: false,
-                type: DataTypes.INTEGER,
+                type: DataTypes.UUIDV4,
                 field: "dapp_id"
             },
             transactionType: {

@@ -1,5 +1,5 @@
 export interface UserTokenData {
-  userId: number
+  userId: string
   email: string
   jti: string
 }
@@ -16,16 +16,14 @@ export interface TokenData {
 }
 
 export interface UserDto {
-  id: number
-  identifier: string
+  id: string
   email: string
   createdAt: Date
   updatedAt: Date
 }
 
 export interface WalletDto {
-  id: number
-  identifier: string
+  id: string
   address: string
   createdAt: Date
   updatedAt: Date

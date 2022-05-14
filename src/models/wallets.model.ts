@@ -1,13 +1,12 @@
 import {Model, DataTypes, Sequelize, Optional} from "sequelize"
 import {Wallet} from "../interfaces/wallets.interface"
 
-export type WalletCreationAttributes = Optional<Wallet, "id" | "identifier" | "createdAt" | "updatedAt">
+export type WalletCreationAttributes = Optional<Wallet, "id" | "createdAt" | "updatedAt">
 
 export class WalletModel
     extends Model<Wallet, WalletCreationAttributes>
     implements Wallet {
-    public id: number
-    public identifier: string
+    public id: string
     public address: string
     public createdAt: Date
     public updatedAt: Date
@@ -19,13 +18,8 @@ export default (sequelize: Sequelize): typeof WalletModel => {
             id: {
                 autoIncrement: true,
                 primaryKey: true,
-                type: DataTypes.INTEGER,
-            },
-            identifier: {
-                allowNull: false,
-                type: DataTypes.UUIDV4,
-                unique: "identifier",
-                defaultValue: DataTypes.UUIDV4
+                type: DataTypes.UUID,
+                defaultValue: DataTypes.UUIDV4,
             },
             address: {
                 allowNull: false,

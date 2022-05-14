@@ -21,7 +21,6 @@ export default class DappController {
                 const authorizations = authorizationsGrouped[dapp.id]
                 return {
                     id: dapp.id,
-                    identifier: dapp.identifier,
                     name: dapp.name,
                     authorizations: (isNull(authorizations) ? [] : authorizations).map(authorization => {
                         return {

@@ -4,7 +4,7 @@ import {IsEnum, IsString} from "class-validator"
 
 export default class AddAuthorizationRequest {
     @IsString()
-    public dappIdentifier: string
+    public dappId: string
     @IsEnum(TransactionType)
     public transactionType: TransactionType
     @IsEnum(TargetType)

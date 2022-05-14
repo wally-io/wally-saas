@@ -1,7 +1,7 @@
 export interface WalletDAppAuthorization {
     id: number
-    walletId: number
-    dappId: number
+    walletId: string
+    dappId: string
     dappAuthorizationId: number
     authorized: boolean
 }

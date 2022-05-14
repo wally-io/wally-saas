@@ -17,13 +17,12 @@ export default class UserController {
                 user = await userService.getByEmail(payload.email!)
             }
             if (isNotEmpty(payload.userId)) {
-                user = await userService.getById(parseInt(payload.userId!))
+                user = await userService.getById(payload.userId!)
             }
             throwIfNull(user, Errors.MISSING_Filter())
             res.status(200).json({
                 id: user!.id,
                 email: user!.email,
-                identifier: user!.identifier,
                 createdAt: user!.createdAt,
                 updatedAt: user!.updatedAt
             })
@@ -39,7 +38,6 @@ export default class UserController {
                     return {
                         id: user.id,
                         email: user.email,
-                        identifier: user.identifier,
                         createdAt: user.createdAt,
                         updatedAt: user.updatedAt
                     }

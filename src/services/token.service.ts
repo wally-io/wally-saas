@@ -4,7 +4,7 @@ import {redisAdd, redisDelSuffix} from "../utils/RedisClient"
 
 class TokenService {
 
-    public async newUserToken(userId: number, userEmail: string): Promise<TokenData> {
+    public async newUserToken(userId: string, userEmail: string): Promise<TokenData> {
         const newToken = await Token.createUserToken(userId, userEmail)
         await redisDelSuffix(`${userId}_`)
         await redisAdd(newToken.jti, "available")

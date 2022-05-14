@@ -6,7 +6,7 @@ export const up: Migration = async ({ context: queryInterface }: { context: Quer
     id: {
       autoIncrement: true,
       primaryKey: true,
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUIDV4,
     },
     email: {
       allowNull: false,
@@ -16,11 +16,6 @@ export const up: Migration = async ({ context: queryInterface }: { context: Quer
     password: {
       allowNull: false,
       type: DataTypes.STRING,
-    },
-    identifier: {
-      allowNull: false,
-      type: DataTypes.UUIDV4,
-      unique: "identifier"
     },
     created_at: {
       allowNull: false,

@@ -1,3 +1,5 @@
+import {ethers} from "ethers"
+
 export default class EthSignature {
 
     public static authMessage(nonce: string): string {
@@ -6,11 +8,7 @@ export default class EthSignature {
     }
 
     public static extractAddress(signature: string, nonce: string): string {
-        const msgBufferHex = ethUtil.bufferToHex(Buffer.from(this.authMessage(nonce), 'utf8'))
-        const resultAddress = sigUtil.recoverPersonalSignature({
-            data: msgBufferHex,
-            signature: signature
-        })
-        return resultAddress
+        const message = this.authMessage(nonce)
+        return ethers.utils.verifyMessage(message, signature)
     }
 }

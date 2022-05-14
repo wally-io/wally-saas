@@ -6,12 +6,7 @@ export const up: Migration = async ({context: queryInterface}: { context: QueryI
         id: {
             autoIncrement: true,
             primaryKey: true,
-            type: DataTypes.INTEGER,
-        },
-        identifier: {
-            allowNull: false,
             type: DataTypes.UUIDV4,
-            unique: "identifier"
         },
         address: {
             allowNull: false,

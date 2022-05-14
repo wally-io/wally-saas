@@ -3,7 +3,7 @@ import {TransactionType} from "../enums/transaction-type.enum"
 
 export interface DAppAuthorization {
     id: number
-    dappId: number
+    dappId: string
     transactionType: TransactionType
     targetType: TargetType
     targetName: string

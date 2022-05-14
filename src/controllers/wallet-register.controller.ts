@@ -2,7 +2,6 @@ import {BodyRequest} from "../interfaces/api.interface"
 import {NextFunction, Response} from "express"
 import {RegisterRequest} from "../dtos/wallet/register"
 import {walletValidatorsService} from "../services/wallet-validators.service"
-import Errors from "../utils/Errors"
 import {walletService} from "../services/wallets.service"
 import {tokenService} from "../services/token.service"
 import {TokenResponse} from "../dtos/token"
@@ -12,9 +11,8 @@ export default class WalletRegisterController {
     public register = async (req: BodyRequest<RegisterRequest>, res: Response<TokenResponse>, next: NextFunction) => {
         try {
             const payload = req.body
-            if (!await walletValidatorsService.validate(payload.address, payload.signature)) {
-                throw Errors.REJECTED_Signature()
-            }
+            await walletValidatorsService.validate(payload.address, payload.signature)
+
             const wallet = await walletService.create(payload.address)
 
             const newToken = await tokenService.newWalletToken(wallet.address)

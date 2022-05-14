@@ -1,5 +1,5 @@
 export interface WalletDApp {
     id: number
-    walletId: number
-    dappId: number
+    walletId: string
+    dappId: string
 }

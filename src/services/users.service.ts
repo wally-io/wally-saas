@@ -13,8 +13,8 @@ class UserService {
         return await this.users.findAll();
     }
 
-    public async getById(userId: number): Promise<UserModel> {
-        const findUser = await this.users.findByPk(userId);
+    public async getById(userId: string): Promise<UserModel> {
+        const findUser = await this.findById(userId)
         throwIfNull(findUser, Errors.NOT_FOUND_UserId(userId))
         return findUser!;
     }
@@ -25,10 +25,8 @@ class UserService {
         return findUser!;
     }
 
-    public async findById(id: number): Promise<UserModel | null> {
-        return await this.users.findOne({
-            where: {id: id}
-        });
+    public async findById(userId: string): Promise<UserModel | null> {
+        return await this.users.findByPk(userId);
     }
 
     public async findByEmail(email: string): Promise<UserModel | null> {
@@ -37,9 +35,9 @@ class UserService {
         });
     }
 
-    public async findByIds(ids: number[]): Promise<UserModel[]> {
+    public async findByIds(userIds: number[]): Promise<UserModel[]> {
         return await this.users.findAll({
-            where: {id: ids}
+            where: {id: userIds}
         });
     }
 
@@ -67,7 +65,7 @@ class UserService {
         });
     }
 
-    public async updateEmail(userId: number, newEmail: string): Promise<void> {
+    public async updateEmail(userId: string, newEmail: string): Promise<void> {
         if (await this.emailExists(newEmail)) {
             throw Errors.CONFLICT_Email(newEmail)
         }
@@ -77,7 +75,7 @@ class UserService {
         })
     }
 
-    public async updatePassword(userId: number, oldPassword: string, newPassword: string): Promise<void> {
+    public async updatePassword(userId: string, oldPassword: string, newPassword: string): Promise<void> {
         const user = await this.getById(userId)
 
         const isValidPassword = user.comparePasswords(oldPassword)

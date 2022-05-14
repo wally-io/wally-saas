@@ -11,7 +11,7 @@ class WalletService {
         return await this.wallets.findAll()
     }
 
-    public async getById(walletId: number): Promise<WalletModel> {
+    public async getById(walletId: string): Promise<WalletModel> {
         const wallet = await this.findById(walletId)
         throwIfNull(wallet, Errors.NOT_FOUND_WalletId(walletId))
         return wallet!
@@ -23,27 +23,13 @@ class WalletService {
         return wallet!
     }
 
-    public async getByIdentifier(identifier: string): Promise<WalletModel> {
-        const wallet = await this.findByIdentifier(identifier)
-        throwIfNull(wallet, Errors.NOT_FOUND_WalletAddress(identifier))
-        return wallet!
-    }
-
-    public async findById(id: number): Promise<WalletModel | null> {
-        return await this.wallets.findOne({
-            where: {id: id}
-        })
+    public async findById(walletId: string): Promise<WalletModel | null> {
+        return await this.wallets.findByPk(walletId)
     }
 
     public async findByAddress(address: string): Promise<WalletModel | null> {
         return await this.wallets.findOne({
             where: {address: address}
-        })
-    }
-
-    public async findByIdentifier(identifier: string): Promise<WalletModel | null> {
-        return await this.wallets.findOne({
-            where: {identifier: identifier}
         })
     }
 

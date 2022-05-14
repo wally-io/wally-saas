@@ -2,13 +2,12 @@ import {Model, DataTypes, Sequelize, Optional} from "sequelize"
 import * as bcrypt from "bcryptjs"
 import User from "../interfaces/users.interface"
 
-export type UserCreationAttributes = Optional<User, "id" | "identifier" | "createdAt" | "updatedAt">
+export type UserCreationAttributes = Optional<User, "id" | "createdAt" | "updatedAt">
 
 export class UserModel extends Model<User, UserCreationAttributes> implements User {
-    public id!: number
+    public id!: string
     public email!: string
     public password!: string
-    public identifier!: string
     public createdAt: Date
     public updatedAt: Date
     public comparePasswords: (password: string) => boolean
@@ -21,7 +20,8 @@ export default (sequelize: Sequelize): typeof UserModel => {
             id: {
                 autoIncrement: true,
                 primaryKey: true,
-                type: DataTypes.INTEGER,
+                type: DataTypes.UUIDV4,
+                defaultValue: DataTypes.UUIDV4,
             },
             email: {
                 allowNull: false,
@@ -31,12 +31,6 @@ export default (sequelize: Sequelize): typeof UserModel => {
             password: {
                 allowNull: false,
                 type: DataTypes.STRING,
-            },
-            identifier: {
-                allowNull: false,
-                type: DataTypes.UUIDV4,
-                unique: "identifier",
-                defaultValue: DataTypes.UUIDV4
             },
             createdAt: {
                 allowNull: false,

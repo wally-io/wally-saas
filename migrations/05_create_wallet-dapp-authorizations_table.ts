@@ -10,11 +10,11 @@ export const up: Migration = async ({context: queryInterface}: { context: QueryI
         },
         wallet_id: {
             allowNull: false,
-            type: DataTypes.INTEGER,
+            type: DataTypes.UUIDV4,
         },
         dapp_id: {
             allowNull: false,
-            type: DataTypes.INTEGER,
+            type: DataTypes.UUIDV4,
         },
         dapp_authorization_id: {
             allowNull: false,

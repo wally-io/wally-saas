@@ -14,7 +14,6 @@ export default class AuthController {
         return res.status(200).json({
             id: caller.id,
             email: caller.email,
-            identifier: caller.identifier,
             createdAt: caller.createdAt,
             updatedAt: caller.updatedAt
         })

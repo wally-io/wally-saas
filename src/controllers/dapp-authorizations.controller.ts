@@ -7,14 +7,12 @@ import {
     GetDAppAuthorizationsResponse
 } from "../dtos/dapp/authorization"
 import {dappAuthorizationsService} from "../services/dapp-authorizations.service"
-import {dappService} from "../services/dapps.service"
 
 export default class DappAuthorizationsController {
     public getAuthorizations = async (req: QueryRequest<GetDAppAuthorizationsRequest>, res: Response<GetDAppAuthorizationsResponse>, next: NextFunction) => {
         try {
             const payload = req.query
-            const dapp = await dappService.getByIdentifier(payload.dappIdentifier)
-            const authorizations = await dappAuthorizationsService.findAllByDAppId(dapp.id)
+            const authorizations = await dappAuthorizationsService.findAllByDAppId(payload.dappId)
             res.status(200).json({
                 authorizations: authorizations
             })

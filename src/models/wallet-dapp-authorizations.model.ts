@@ -7,8 +7,8 @@ export class WalletDAppAuthorizationModel
     extends Model<WalletDAppAuthorization, WalletDAppAuthorizationCreationAttributes>
     implements WalletDAppAuthorization {
     public id: number
-    public walletId: number
-    public dappId: number
+    public walletId: string
+    public dappId: string
     public dappAuthorizationId: number
     public authorized: boolean
 }
@@ -23,12 +23,12 @@ export default (sequelize: Sequelize): typeof WalletDAppAuthorizationModel => {
             },
             walletId: {
                 allowNull: false,
-                type: DataTypes.INTEGER,
+                type: DataTypes.UUIDV4,
                 field: "wallet_id"
             },
             dappId: {
                 allowNull: false,
-                type: DataTypes.INTEGER,
+                type: DataTypes.UUIDV4,
                 field: "dapp_id"
             },
             dappAuthorizationId: {

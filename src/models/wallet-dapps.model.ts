@@ -7,8 +7,8 @@ export class WalletDAppModel
     extends Model<WalletDApp, WalletDAppCreationAttributes>
     implements WalletDApp {
     public id: number
-    public walletId: number
-    public dappId: number
+    public walletId: string
+    public dappId: string
 }
 
 export default (sequelize: Sequelize): typeof WalletDAppModel => {
@@ -21,12 +21,12 @@ export default (sequelize: Sequelize): typeof WalletDAppModel => {
             },
             walletId: {
                 allowNull: false,
-                type: DataTypes.INTEGER,
+                type: DataTypes.UUIDV4,
                 field: "wallet_id"
             },
             dappId: {
                 allowNull: false,
-                type: DataTypes.INTEGER,
+                type: DataTypes.UUIDV4,
                 field: "dapp_id"
             }
         },

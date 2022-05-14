@@ -1,6 +1,5 @@
 export interface Wallet {
-    id : number
-    identifier: string
+    id : string
     address: string
     createdAt: Date
     updatedAt: Date

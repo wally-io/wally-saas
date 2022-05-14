@@ -1,6 +1,5 @@
 export interface DApp {
-    id: number
-    identifier: string
+    id: string
     name: string
-    ownerId: number
+    ownerId: string
 }

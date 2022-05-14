@@ -21,9 +21,7 @@ export default class WalletRegisterController {
         try {
             const payload = req.body
 
-            if (!await walletValidatorsService.validate(payload.address, payload.signature)) {
-                throw Errors.REJECTED_Signature()
-            }
+            await walletValidatorsService.validate(payload.address, payload.signature)
 
             const wallet = await walletService.getByAddress(payload.address)
 

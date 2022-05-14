@@ -14,7 +14,7 @@ export default class Token {
         return `${data}_${nanoid()}`
     }
 
-    public static async createUserToken(userId: number, email: string, expiresIn: number = expiration1month): Promise<TokenData> {
+    public static async createUserToken(userId: string, email: string, expiresIn: number = expiration1month): Promise<TokenData> {
         const dataStoredInToken: UserTokenData = {
             userId: userId,
             email: email,

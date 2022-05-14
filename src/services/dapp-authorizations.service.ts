@@ -10,7 +10,7 @@ class DAppAuthorizationsService {
         return this.dappAuthorizations.findAll()
     }
 
-    public async findAllByDAppId(dappId: number): Promise<DAppAuthorizationModel[]> {
+    public async findAllByDAppId(dappId: string): Promise<DAppAuthorizationModel[]> {
         return await this.dappAuthorizations.findAll({
             where: {
                 dappId: dappId
@@ -18,7 +18,7 @@ class DAppAuthorizationsService {
         })
     }
 
-    public async create(dappId: number, transactionType: TransactionType, targetType: TargetType, targetName: string, targetAddress: string, reason: string) {
+    public async create(dappId: string, transactionType: TransactionType, targetType: TargetType, targetName: string, targetAddress: string, reason: string) {
         return await this.dappAuthorizations.create({
             dappId: dappId,
             transactionType: transactionType,

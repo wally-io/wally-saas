@@ -1,6 +1,5 @@
 import Errors from "../utils/Errors"
 import db from "../db/database"
-import {dappService} from "./dapps.service"
 import {WalletDAppModel} from "../models/wallet-dapps.model"
 import {dappAuthorizationsService} from "./dapp-authorizations.service"
 import {walletDAppAuthorizationsService} from "./wallet-dapp-authorizations.service"
@@ -10,18 +9,17 @@ import {associateBy} from "../utils/map"
 class WalletDAppService {
     private walletDApps = db.WalletDApps
 
-    public async createLink(walletId: number, dappIdentifier: string, authorizations: DAppAuthorization[]): Promise<WalletDAppModel> {
-        const dapp = await dappService.getByIdentifier(dappIdentifier)
+    public async createLink(walletId: string, dappId: string, authorizations: DAppAuthorization[]): Promise<WalletDAppModel> {
 
-        if (await this.linkExists(walletId, dapp.id)) {
+        if (await this.linkExists(walletId, dappId)) {
             throw Errors.CONFLICT("wallet", walletId)
         }
         const link = await this.walletDApps.create({
             walletId: walletId,
-            dappId: dapp.id
+            dappId: dappId
         })
 
-        const allAuthorizations = await dappAuthorizationsService.findAllByDAppId(dapp.id)
+        const allAuthorizations = await dappAuthorizationsService.findAllByDAppId(dappId)
         const authorizationMapped = associateBy(authorizations, "dappAuthorizationId")
 
         for (const authorization of allAuthorizations) {
@@ -37,7 +35,7 @@ class WalletDAppService {
         return link
     }
 
-    public async linkExists(walletId: number, dappId: number): Promise<boolean> {
+    public async linkExists(walletId: string, dappId: string): Promise<boolean> {
         return await this.walletDApps.findOne({
             where: {
                 walletId: walletId,

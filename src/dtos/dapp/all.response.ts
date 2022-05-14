@@ -10,8 +10,7 @@ export interface DAppAuthorizationDto {
 }
 
 export interface DAppDto {
-    id: number
-    identifier: string
+    id: string
     name: string
     authorizations: DAppAuthorizationDto[]
 }

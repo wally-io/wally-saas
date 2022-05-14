@@ -9,7 +9,7 @@ const walletRegisterController = new WalletRegisterController()
 
 // TODO find a way to let TypeScript understand
 // @ts-ignore
-router.post(Endpoint.WALLET_ETH_Register, validateRequest(RegisterRequest), walletRegisterController.ethregister)
+router.post(Endpoint.WALLET_ETH_Register, validateRequest(RegisterRequest), walletRegisterController.register)
 
 
 export default router

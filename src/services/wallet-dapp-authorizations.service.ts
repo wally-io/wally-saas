@@ -4,7 +4,7 @@ import {WalletDAppAuthorizationModel} from "../models/wallet-dapp-authorizations
 class WalletDAppAuthorizationsService {
     private walletDAppAuthorizations = db.WalletDAppAuthorizations
 
-    public async create(walletId: number, dappId: number, dappAuthorizationId: number, authorized: boolean): Promise<WalletDAppAuthorizationModel> {
+    public async create(walletId: string, dappId: string, dappAuthorizationId: number, authorized: boolean): Promise<WalletDAppAuthorizationModel> {
         return await this.walletDAppAuthorizations.create({
             walletId: walletId,
             dappId: dappId,

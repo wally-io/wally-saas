@@ -22,10 +22,12 @@ class WalletValidatorsService {
         }
     }
 
-    public async validate(address: string, signature: string): Promise<boolean> {
+    public async validate(address: string, signature: string) {
         const validator = await this.getByAddress(address)
         const extractedAddress: string = EthSignature.extractAddress(signature, validator.nonce)
-        return address === extractedAddress
+        if (address !== extractedAddress) {
+            throw Errors.REJECTED_Signature()
+        }
     }
 
     public async getByAddress(address: string): Promise<WalletValidatorModel> {

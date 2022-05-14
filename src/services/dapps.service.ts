@@ -13,7 +13,7 @@ class DAppService {
         return this.dapps.findAll()
     }
 
-    public async create(ownerId: number, name: string, authorizations: DAppAuthorization[]): Promise<DApp> {
+    public async create(ownerId: string, name: string, authorizations: DAppAuthorization[]): Promise<DApp> {
         if (await this.nameExists(name)) {
             throw Errors.CONFLICT("name", name)
         }
@@ -43,28 +43,14 @@ class DAppService {
         }) != undefined
     }
 
-    public async getById(dappId: number): Promise<DAppModel> {
+    public async getById(dappId: string): Promise<DAppModel> {
         const dapp = await this.findById(dappId)
         throwIfNull(dapp, Errors.NOT_FOUND_DAppId(dappId))
         return dapp!
     }
 
-    public async getByIdentifier(identifier: string): Promise<DAppModel> {
-        const findWallet = await this.findByIdentifier(identifier)
-        throwIfNull(findWallet, Errors.NOT_FOUND_DAppIdentifier(identifier))
-        return findWallet!
-    }
-
-    public async findById(id: number): Promise<DAppModel | null> {
-        return await this.dapps.findOne({
-            where: {id: id}
-        })
-    }
-
-    public async findByIdentifier(identifier: string): Promise<DAppModel | null> {
-        return await this.dapps.findOne({
-            where: {identifier: identifier}
-        })
+    public async findById(dappId: string): Promise<DAppModel | null> {
+        return await this.dapps.findByPk(dappId)
     }
 }
 
