@@ -20,7 +20,7 @@ export default (sequelize: Sequelize): typeof TransactionModel => {
     TransactionModel.init(
         {
             id: {
-                autoIncrement: true,
+                allowNull: false,
                 primaryKey: true,
                 type: DataTypes.UUIDV4,
                 defaultValue: DataTypes.UUIDV4,

@@ -17,7 +17,7 @@ export default (sequelize: Sequelize): typeof WalletModel => {
     WalletModel.init(
         {
             id: {
-                autoIncrement: true,
+                allowNull: false,
                 primaryKey: true,
                 type: DataTypes.UUIDV4,
                 defaultValue: DataTypes.UUIDV4,

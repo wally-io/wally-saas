@@ -4,7 +4,7 @@ import {Migration} from "../umzug"
 export const up: Migration = async ({context: queryInterface}: { context: QueryInterface }) => {
     await queryInterface.createTable("dapps", {
         id: {
-            autoIncrement: true,
+            allowNull: false,
             primaryKey: true,
             type: DataTypes.UUIDV4,
         },

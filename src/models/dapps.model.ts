@@ -16,7 +16,7 @@ export default (sequelize: Sequelize): typeof DAppModel => {
     DAppModel.init(
         {
             id: {
-                autoIncrement: true,
+                allowNull: false,
                 primaryKey: true,
                 type: DataTypes.UUIDV4,
                 defaultValue: DataTypes.UUIDV4,

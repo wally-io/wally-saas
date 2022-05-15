@@ -18,7 +18,7 @@ export default (sequelize: Sequelize): typeof UserModel => {
     UserModel.init(
         {
             id: {
-                autoIncrement: true,
+                allowNull: false,
                 primaryKey: true,
                 type: DataTypes.UUIDV4,
                 defaultValue: DataTypes.UUIDV4,
