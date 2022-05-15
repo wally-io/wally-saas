@@ -13,6 +13,7 @@ export const publish = (token: string, transactionId: string, transaction: strin
         }
     }
 
+    logger.log("Prepare transaction: ", payload)
     admin.messaging().sendToDevice(token, payload, options)
         .then(function (response) {
             logger.success(`Transaction sent to client ${token} [${transactionId}]`)
