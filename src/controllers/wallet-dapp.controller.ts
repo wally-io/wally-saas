@@ -16,6 +16,7 @@ import {dappService} from "../services/dapp.service"
 import {dappAuthorizationsService} from "../services/dapp-authorizations.service"
 import {walletDAppAuthorizationsService} from "../services/wallet-dapp-authorizations.service"
 import {associateBy} from "../utils/map"
+import Errors from "../utils/Errors"
 
 export default class WalletDappController {
     public findDApps = async (req: WalletEmptyRequest, res: Response<FindWalletDAppsResponse>, next: NextFunction) => {
@@ -80,8 +81,12 @@ export default class WalletDappController {
             const user = req.user
             const payload = req.query
 
+            const dapp = await dappService.getById(payload.dappId)
+
             // TODO can leverage client backend auth on secondary users with roles
-            const dapp = await dappService.getByOwner(user.id)
+            if (dapp.ownerId !== user.id) {
+                throw Errors.NOT_OWNER()
+            }
 
             res.status(200).json({
                 path: `${Endpoint.WALLET_DAPP_Connect}?dappId=${dapp.id}&dappUserIdentifier=${payload.dappUserIdentifier}`

@@ -21,7 +21,7 @@ router.get(Endpoint.WALLET_DAPP_GetAuthorizations, validateWalletToken, validate
 // @ts-ignore
 router.post(Endpoint.WALLET_DAPP_UpdateAuthorizations, validateWalletToken, validateRequest(UpdateAuthorizationsRequest), walletDappController.updateAuthorizations)
 // @ts-ignore
-router.post(Endpoint.WALLET_DAPP_GetConnectLink, validateUserToken, validateQueryRequest(GetDAppConnectLinkRequest), walletDappController.getConnectLink)
+router.get(Endpoint.WALLET_DAPP_GetConnectLink, validateUserToken, validateQueryRequest(GetDAppConnectLinkRequest), walletDappController.getConnectLink)
 // @ts-ignore
 router.post(Endpoint.WALLET_DAPP_Connect, validateWalletToken, validateRequest(ConnectDAppRequest), walletDappController.connect)
 
