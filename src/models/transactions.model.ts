@@ -12,6 +12,7 @@ export class TransactionModel
     public dappId: string
     public status: TransactionStatus
     public result: string | null
+    public transaction: string
     public createdAt: Date
     public updatedAt: Date
 }
@@ -41,6 +42,10 @@ export default (sequelize: Sequelize): typeof TransactionModel => {
             },
             result: {
                 allowNull: true,
+                type: DataTypes.STRING
+            },
+            transaction: {
+                allowNull: false,
                 type: DataTypes.STRING
             },
             createdAt: {

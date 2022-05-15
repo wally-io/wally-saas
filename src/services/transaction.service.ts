@@ -20,12 +20,13 @@ class TransactionsService {
         })
     }
 
-    public async create(walletAddress: string, dappId: string): Promise<TransactionModel> {
+    public async create(walletAddress: string, dappId: string, body): Promise<TransactionModel> {
         return await this.transactions.create({
             walletAddress: walletAddress,
             dappId: dappId,
             status: TransactionStatus.CREATED,
-            result: null
+            result: null,
+            transaction: body
         })
     }
 

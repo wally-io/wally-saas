@@ -47,11 +47,10 @@ export default class TransactionsController {
 
             await dappService.validateOwnership(payload.dappId, user.id)
 
-            const transaction = await transactionsService.create(payload.walletAddress, payload.dappId)
-            const dapp = await dappService.getById(transaction.dappId)
+            const dapp = await dappService.getById(payload.dappId)
             // TODO call dapp callback dapp.callback to notify new transaction
 
-            const wallet = await walletService.getByAddress(transaction.walletAddress)
+            const wallet = await walletService.getByAddress(payload.walletAddress)
 
             // TODO check dapp allowance for that wallet (or authorizations)
 
@@ -61,7 +60,11 @@ export default class TransactionsController {
 
             throwIfNull(wallet.fcmToken, Errors.WALLET_Disconnected(wallet.address))
 
-            publish(wallet.fcmToken!, transaction.id, JSON.stringify(rawTransaction))
+            const transactionBody = JSON.stringify(rawTransaction)
+
+            const transaction = await transactionsService.create(payload.walletAddress, payload.dappId, transactionBody)
+
+            publish(wallet.fcmToken!, transaction.id, transactionBody)
 
             res.status(200).json({
                 transactionId: transaction.id
