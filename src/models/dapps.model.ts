@@ -18,7 +18,7 @@ export default (sequelize: Sequelize): typeof DAppModel => {
             id: {
                 allowNull: false,
                 primaryKey: true,
-                type: DataTypes.UUIDV4,
+                type: DataTypes.UUID,
                 defaultValue: DataTypes.UUIDV4,
             },
             name: {
@@ -28,7 +28,7 @@ export default (sequelize: Sequelize): typeof DAppModel => {
             },
             ownerId: {
                 allowNull: false,
-                type: DataTypes.UUIDV4,
+                type: DataTypes.UUID,
                 field: "owner_id"
             },
             callback: {

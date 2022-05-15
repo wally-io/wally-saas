@@ -22,7 +22,7 @@ export default (sequelize: Sequelize): typeof TransactionModel => {
             id: {
                 allowNull: false,
                 primaryKey: true,
-                type: DataTypes.UUIDV4,
+                type: DataTypes.UUID,
                 defaultValue: DataTypes.UUIDV4,
             },
             walletAddress: {

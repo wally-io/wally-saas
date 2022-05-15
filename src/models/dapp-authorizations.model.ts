@@ -26,7 +26,7 @@ export default (sequelize: Sequelize): typeof DAppAuthorizationModel => {
             },
             dappId: {
                 allowNull: false,
-                type: DataTypes.UUIDV4,
+                type: DataTypes.UUID,
                 field: "dapp_id"
             },
             transactionType: {

@@ -1,6 +1,6 @@
 import {TargetType, TransactionType} from "../../enums"
 
-export interface DAppAuthorizationDto {
+export interface DAppAuthorizationResponse {
     transactionType: TransactionType
     targetType: TargetType
     targetName: string
@@ -8,13 +8,13 @@ export interface DAppAuthorizationDto {
     reason: string
 }
 
-export interface DAppDto {
+export interface DAppResponse {
     id: string
     name: string
     callback: string | null
-    authorizations: DAppAuthorizationDto[]
+    authorizations: DAppAuthorizationResponse[]
 }
 
 export default interface AllDAppResponse {
-    dapps: DAppDto[]
+    dapps: DAppResponse[]
 }

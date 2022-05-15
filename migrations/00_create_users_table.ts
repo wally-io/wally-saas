@@ -6,7 +6,7 @@ export const up: Migration = async ({ context: queryInterface }: { context: Quer
     id: {
       allowNull: false,
       primaryKey: true,
-      type: DataTypes.UUIDV4,
+      type: DataTypes.UUID,
     },
     email: {
       allowNull: false,
@@ -31,11 +31,6 @@ export const up: Migration = async ({ context: queryInterface }: { context: Quer
     fields: ["email"],
     type: "unique",
     name: "unique_email",
-  });
-  await queryInterface.addConstraint("users", {
-    fields: ["identifier"],
-    type: "unique",
-    name: "unique_identifier",
   });
 };
 

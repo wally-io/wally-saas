@@ -21,12 +21,12 @@ export default (sequelize: Sequelize): typeof WalletDAppModel => {
             },
             walletId: {
                 allowNull: false,
-                type: DataTypes.UUIDV4,
+                type: DataTypes.UUID,
                 field: "wallet_id"
             },
             dappId: {
                 allowNull: false,
-                type: DataTypes.UUIDV4,
+                type: DataTypes.UUID,
                 field: "dapp_id"
             }
         },

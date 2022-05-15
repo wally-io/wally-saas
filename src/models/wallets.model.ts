@@ -19,7 +19,7 @@ export default (sequelize: Sequelize): typeof WalletModel => {
             id: {
                 allowNull: false,
                 primaryKey: true,
-                type: DataTypes.UUIDV4,
+                type: DataTypes.UUID,
                 defaultValue: DataTypes.UUIDV4,
             },
             address: {

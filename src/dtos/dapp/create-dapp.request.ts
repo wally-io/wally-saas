@@ -2,6 +2,7 @@ import {IsArray, IsEnum, IsString, IsUrl, ValidateIf, ValidateNested} from "clas
 import {Type} from "class-transformer"
 import {TargetType, TransactionType } from "../../enums"
 import {isNotEmpty} from "../../utils/checks"
+import "reflect-metadata"
 
 export class DAppAuthorization {
     @IsEnum(TransactionType)

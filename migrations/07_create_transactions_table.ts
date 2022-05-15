@@ -6,7 +6,7 @@ export const up: Migration = async ({context: queryInterface}: { context: QueryI
         id: {
             allowNull: false,
             primaryKey: true,
-            type: DataTypes.UUIDV4,
+            type: DataTypes.UUID,
         },
         status: {
             allowNull: false,
