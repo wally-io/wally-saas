@@ -46,7 +46,7 @@ export default (sequelize: Sequelize): typeof TransactionModel => {
             },
             transaction: {
                 allowNull: false,
-                type: DataTypes.STRING
+                type: DataTypes.TEXT
             },
             createdAt: {
                 allowNull: false,

@@ -31,8 +31,7 @@ const PORT = process.env.PORT || 4000
 const agent = new HttpsProxyAgent('127.0.0.1:7890');
 admin.initializeApp({
     // @ts-ignore
-    credential: admin.credential.cert(firebaseAuthKey),
-    httpAgent: agent
+    credential: admin.credential.cert(firebaseAuthKey)
 });
 
 const app = express()

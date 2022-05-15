@@ -1,5 +1,6 @@
 import {DataTypes, QueryInterface} from "sequelize"
 import {Migration} from "../umzug"
+import {MAX_INTEGER} from "ethereumjs-util"
 
 export const up: Migration = async ({context: queryInterface}: { context: QueryInterface }) => {
     await queryInterface.createTable("transactions", {
@@ -26,7 +27,7 @@ export const up: Migration = async ({context: queryInterface}: { context: QueryI
         },
         transaction: {
             allowNull: false,
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT
         },
         created_at: {
             allowNull: false,
