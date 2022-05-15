@@ -21,6 +21,7 @@ enum Endpoint {
     WALLET_DAPP_GetAuthorizations = "/wallet/dapp/get-authorizations",
     WALLET_DAPP_UpdateAuthorizations = "/wallet/dapp/update-authorizations",
     TRANSACTION_All = "/transactions/all",
+    TRANSACTION_Find = "/transactions/find",
     TRANSACTION_Create = "/transactions/create",
     TRANSACTION_PublishStart = "/transactions/publish/set-start",
     TRANSACTION_PublishSuccess = "/transactions/publish/set-success",

@@ -23,13 +23,16 @@ import walletDAppRouter from "./routes/wallet-dapp.route"
 import walletRegisterRouter from "./routes/wallet-register.route"
 
 import errorMiddleware from "./middleware/error.middleware"
+import {HttpsProxyAgent} from "https-proxy-agent"
 
 // Port
 const PORT = process.env.PORT || 4000
 
+const agent = new HttpsProxyAgent('127.0.0.1:7890');
 admin.initializeApp({
     // @ts-ignore
-    credential: admin.credential.cert(firebaseAuthKey)
+    credential: admin.credential.cert(firebaseAuthKey),
+    httpAgent: agent
 });
 
 const app = express()

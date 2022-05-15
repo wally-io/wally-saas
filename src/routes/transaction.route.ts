@@ -2,9 +2,9 @@ import {Router} from "express"
 import Endpoint from "../enums/endpoint.enum"
 import TransactionsController from "../controllers/transactions.controller"
 import {validateUserToken, validateWalletToken} from "../middleware/auth.middleware"
-import {validateRequest} from "../middleware/validate-request.middleware"
+import {validateQueryRequest, validateRequest} from "../middleware/validate-request.middleware"
 import {
-    CreateTransactionRequest,
+    CreateTransactionRequest, FindTransactionsRequest,
     SetTransactionFailRequest,
     SetTransactionStartRequest,
     SetTransactionSuccessRequest
@@ -15,6 +15,8 @@ const transactionsController = new TransactionsController()
 
 // @ts-ignore
 router.get(Endpoint.TRANSACTION_All, transactionsController.all)
+// @ts-ignore
+router.get(Endpoint.TRANSACTION_Find, validateWalletToken, validateQueryRequest(FindTransactionsRequest), transactionsController.find)
 // @ts-ignore
 router.post(Endpoint.TRANSACTION_Create, validateUserToken, validateRequest(CreateTransactionRequest), transactionsController.create)
 // @ts-ignore

@@ -11,6 +11,15 @@ class TransactionsService {
         return await this.transactions.findAll()
     }
 
+    public async find(address: string, status: TransactionStatus): Promise<TransactionModel[]> {
+        return await this.transactions.findAll({
+            where:{
+                walletAddress: address,
+                status: status
+            }
+        })
+    }
+
     public async create(walletAddress: string, dappId: string): Promise<TransactionModel> {
         return await this.transactions.create({
             walletAddress: walletAddress,

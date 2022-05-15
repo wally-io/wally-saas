@@ -1,9 +1,9 @@
-import {Empty, EmptyRequest, UserBodyRequest, WalletBodyRequest} from "../interfaces/api.interface"
+import {Empty, EmptyRequest, UserBodyRequest, WalletBodyRequest, WalletQueryRequest} from "../interfaces/api.interface"
 import {NextFunction, Response} from "express"
 import {
     AllTransactionsResponse,
     CreateTransactionRequest,
-    CreateTransactionResponse, SetTransactionFailRequest,
+    CreateTransactionResponse, FindTransactionsRequest, SetTransactionFailRequest,
     SetTransactionStartRequest, SetTransactionSuccessRequest
 } from "../dtos/transaction"
 import {transactionsService} from "../services/transaction.service"
@@ -21,6 +21,18 @@ export default class TransactionsController {
     public all = async (req: EmptyRequest, res: Response<AllTransactionsResponse>, next: NextFunction) => {
         try {
             const result = await transactionsService.all()
+            res.status(200).json({
+                transactions: result
+            })
+        } catch (error) {
+            next(error)
+        }
+    }
+    public find = async (req: WalletQueryRequest<FindTransactionsRequest>, res: Response<AllTransactionsResponse>, next: NextFunction) => {
+        try {
+            const wallet = req.wallet
+            const payload = req.query
+            const result = await transactionsService.find(wallet.address,payload.status)
             res.status(200).json({
                 transactions: result
             })
