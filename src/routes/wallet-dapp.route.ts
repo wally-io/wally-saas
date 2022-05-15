@@ -3,6 +3,7 @@ import WalletDappController from "../controllers/wallet-dapp.controller"
 import {validateRequest, validateQueryRequest} from "../middleware/validate-request.middleware"
 import Endpoint from "../enums/endpoint.enum"
 import {
+    ConnectDAppQueryRequest,
     ConnectDAppRequest,
     FindAuthorizationsRequest,
     GetDAppConnectLinkRequest,
@@ -23,6 +24,6 @@ router.post(Endpoint.WALLET_DAPP_UpdateAuthorizations, validateWalletToken, vali
 // @ts-ignore
 router.get(Endpoint.WALLET_DAPP_GetConnectLink, validateUserToken, validateQueryRequest(GetDAppConnectLinkRequest), walletDappController.getConnectLink)
 // @ts-ignore
-router.post(Endpoint.WALLET_DAPP_Connect, validateWalletToken, validateRequest(ConnectDAppRequest), walletDappController.connect)
+router.post(Endpoint.WALLET_DAPP_Connect, validateWalletToken, validateQueryRequest(ConnectDAppQueryRequest), validateRequest(ConnectDAppRequest), walletDappController.connect)
 
 export default router

@@ -2,13 +2,18 @@ import {
     Empty,
     WalletQueryRequest,
     WalletBodyRequest,
-    WalletEmptyRequest, UserQueryRequest
+    WalletEmptyRequest, UserQueryRequest, WalletMixRequest
 } from "../interfaces/api.interface"
 import {NextFunction, Response} from "express"
 import {
-    FindAuthorizationsRequest, FindAuthorizationsResponse,
+    FindAuthorizationsRequest,
+    FindAuthorizationsResponse,
     UpdateAuthorizationsRequest,
-    FindWalletDAppsResponse, ConnectDAppRequest, GetDAppConnectLinkRequest, GetDAppConnectLinkResponse,
+    FindWalletDAppsResponse,
+    ConnectDAppRequest,
+    GetDAppConnectLinkRequest,
+    GetDAppConnectLinkResponse,
+    ConnectDAppQueryRequest,
 } from "../dtos/wallet/dapp"
 import {walletDAppService} from "../services/wallet-dapp.service"
 import {Endpoint} from "../enums"
@@ -96,11 +101,12 @@ export default class WalletDappController {
         }
     }
 
-    public connect = async (req: WalletBodyRequest<ConnectDAppRequest>, res: Response<Empty>, next: NextFunction) => {
+    public connect = async (req: WalletMixRequest<ConnectDAppRequest, ConnectDAppQueryRequest>, res: Response<Empty>, next: NextFunction) => {
         try {
             const wallet = req.wallet
-            const payload = req.body
-            await walletDAppService.connectDApp(wallet.id, payload.dappId, payload.authorizations)
+            const body = req.body
+            const query = req.query
+            await walletDAppService.connectDApp(wallet.id, query.dappId, body.authorizations)
 
             // TODO notify dapp (with callback) that wallet.address is connected for dappUserIdentifier
 

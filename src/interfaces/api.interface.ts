@@ -20,6 +20,13 @@ export interface UserQueryRequest<T> extends Express.Request {
 }
 
 /** User from Wallet App */
+export interface WalletMixRequest<T, Z> extends Express.Request {
+    token: WalletTokenData
+    wallet: WalletDto
+    body: T
+    query: Z
+}
+
 export interface WalletBodyRequest<T> extends Express.Request {
     token: WalletTokenData
     wallet: WalletDto
