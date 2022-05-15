@@ -42,7 +42,7 @@ export default (sequelize: Sequelize): typeof TransactionModel => {
             },
             result: {
                 allowNull: true,
-                type: DataTypes.STRING
+                type: DataTypes.TEXT
             },
             transaction: {
                 allowNull: false,

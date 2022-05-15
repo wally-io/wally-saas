@@ -15,7 +15,7 @@ export const up: Migration = async ({context: queryInterface}: { context: QueryI
         },
         result: {
             allowNull: true,
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT
         },
         wallet_address: {
             allowNull: false,
